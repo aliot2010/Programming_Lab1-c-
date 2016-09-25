@@ -1,5 +1,6 @@
 package com.company;
 
+import breakfast.Breakfast;
 import food.*;
 import lineTreatment.LineTreatment;
 
@@ -11,11 +12,15 @@ public class Main {
 
         //System.out.print(Food.class.getName());
         ArrayList list=LineTreatment.treat(args);
-        System.out.println(((Food)list.get(1)).getDescription() + " "
-                +((Food) list.get(1)).colories() + " Kkal");
-//        String str=new String(" 333");
-//        System.out.println(str.charAt(1));
-//
+
+
+        Breakfast breakfast=new Breakfast(list);
+        System.out.println(breakfast.toString());
+
+//        System.out.println(((Food)list.get(1)).getDescription() + " "
+//                +((Food) list.get(1)).colories() + " Kkal");
+//            System.out.print(list.toString());
+
 //        Food sandwich = new Sandwich();
 //        sandwich = new Meat(sandwich);
 //        sandwich = new Meat(sandwich);

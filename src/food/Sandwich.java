@@ -6,7 +6,7 @@ package food;
 public class Sandwich extends Food {
 
     public Sandwich(){
-        description = "Sandwich ";
+        description = "Sandwich";
     }
     @Override
     public double colories() {

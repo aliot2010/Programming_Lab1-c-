@@ -28,7 +28,6 @@ public final class LineTreatment {
             arrayList2 = new ArrayList(0);
             for (String word : arr) {
                 arrayList2.add(word);
-                System.out.println(word);
             }
             arrayList.add(arrayList2);
 
@@ -42,20 +41,26 @@ public final class LineTreatment {
         ArrayList<Object> list = new ArrayList<>(arrayList.size());
         for (Object obj : arrayList) {
             Food food = null;
-            for (int i = 0; i < ((ArrayList) obj).size(); i++) {
 
+            for (int i = 0; i < ((ArrayList) obj).size(); i++) {
+                if(((ArrayList) obj).get(i).equals("-sort")){/////
+                    list.add("-sort");
+                    return list;
+                }else  if(((ArrayList) obj).get(i).equals("-colories")){
+                        list.add("-colories");
+                        return list;
+                }
                 if (i == 0) {
                     Class c = null;
                     try {
                         c = Class.forName("food."+(String) ((ArrayList) obj).get(i));
                         Object object = c.newInstance();
                         food = (Food) object;
-                    } catch (ClassNotFoundException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
+                        food=null;
+                        list.add(food);
+                        continue;
                     }
 
                 } else {
@@ -64,16 +69,12 @@ public final class LineTreatment {
                         c = Class.forName("food."+(String) ((ArrayList) obj).get(i));
                         Constructor c1 = c.getConstructor(Food.class);
                         food = (Food) c1.newInstance(food);
-                    } catch (ClassNotFoundException e) {
+                    } catch (Exception e ) {
                         e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
+                        food=null;
+                        list.add(food);
+                        continue;
+
                     }
                 }
             }
