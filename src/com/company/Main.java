@@ -10,16 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //System.out.print(Food.class.getName());
+
         ArrayList list=LineTreatment.treat(args);
-
-
+      
         Breakfast breakfast=new Breakfast(list);
-        System.out.println(breakfast.toString());
+         System.out.println(breakfast.toString());
+        System.out.println(breakfast.numberOfProducts((Food) list.get(0)));//Колличество заданных
+        //продуктов в классе
 
-//        System.out.println(((Food)list.get(1)).getDescription() + " "
-//                +((Food) list.get(1)).colories() + " Kkal");
-//            System.out.print(list.toString());
 
 //        Food sandwich = new Sandwich();
 //        sandwich = new Meat(sandwich);
@@ -29,12 +27,7 @@ public class Main {
 //        System.out.println(sandwich.getDescription() + " "
 //                + sandwich.colories() + " Kkal");
 //
-//        Food sandwich2 = new Sandwich();
-//        sandwich2 = new Meat(sandwich2);
-//        sandwich2 = new Meat(sandwich2);
-//        sandwich2 = new Tomato(sandwich2);
-//        sandwich2 = new Cheese(sandwich2);
-//        System.out.println(sandwich.equals(sandwich2));
+//
 
 
     }

@@ -32,7 +32,13 @@ public class Breakfast {
         Collections.sort(list, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
-                return ((Food) o1).getDescription().compareTo(((Food) o2).getDescription());
+                 if(((Food) o1).getDescription().length()>
+                        (((Food) o2).getDescription().length())){
+                     return 1;
+                 } else if(((Food) o1).getDescription().length()<
+                         (((Food) o2).getDescription().length())){
+                     return -1;
+                 }else return 0;
             }
         });
 
@@ -65,5 +71,15 @@ public class Breakfast {
 
     public int getFlag() {
         return flag;
+    }
+
+    public int numberOfProducts(Food food){
+        int sum=0;
+        for (Object i:list){
+            if(i.equals(food)){
+                sum++;
+            }
+        }
+        return sum;
     }
 }

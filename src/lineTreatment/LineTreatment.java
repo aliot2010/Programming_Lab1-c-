@@ -41,7 +41,7 @@ public final class LineTreatment {
         ArrayList<Object> list = new ArrayList<>(arrayList.size());
         for (Object obj : arrayList) {
             Food food = null;
-
+            boolean flag=true;
             for (int i = 0; i < ((ArrayList) obj).size(); i++) {
                 if(((ArrayList) obj).get(i).equals("-sort")){/////
                     list.add("-sort");
@@ -57,9 +57,12 @@ public final class LineTreatment {
                         Object object = c.newInstance();
                         food = (Food) object;
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        food=null;
-                        list.add(food);
+                        System.out.println("Продукт "+ (String) ((ArrayList) obj).get(i)+
+                                                " не может быть включен в завтрак");
+                            food=null;
+                        flag=false;
+//                        list.add(food);
+                       // list.remove(list.size()-1);
                         continue;
                     }
 
@@ -70,15 +73,24 @@ public final class LineTreatment {
                         Constructor c1 = c.getConstructor(Food.class);
                         food = (Food) c1.newInstance(food);
                     } catch (Exception e ) {
-                        e.printStackTrace();
-                        food=null;
-                        list.add(food);
+                       // e.printStackTrace();
+                        System.out.println("Продукт "+ (String) ((ArrayList) obj).get(i)+
+                                " не может быть включен в завтрак");
+                           food=null;
+                        flag=false;
+//                        if(food!=null) {
+//                            list.add(food);
+                        //list.remove(list.size()-1);
+
+//                        }
                         continue;
 
                     }
                 }
             }
-            list.add(food);
+            if(flag==true) {
+                list.add(food);
+            }
         }
         return  list;
     }
