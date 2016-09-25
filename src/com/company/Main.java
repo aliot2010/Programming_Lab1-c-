@@ -11,8 +11,8 @@ public class Main {
 
         //System.out.print(Food.class.getName());
         ArrayList list=LineTreatment.treat(args);
-        System.out.println(((Food)list.get(0)).getDescription() + " "
-                +((Food) list.get(0)).colories() + " Kkal");
+        System.out.println(((Food)list.get(1)).getDescription() + " "
+                +((Food) list.get(1)).colories() + " Kkal");
 //        String str=new String(" 333");
 //        System.out.println(str.charAt(1));
 //
