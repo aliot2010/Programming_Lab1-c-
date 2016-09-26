@@ -11,13 +11,13 @@ public class Main {
     public static void main(String[] args) {
 
 
-        ArrayList list=LineTreatment.treat(args);//метод создания массива объектов по названиям классов,
+        ArrayList listOfFood=LineTreatment.treat(args);//метод создания массива объектов по названиям классов,
         //используя Reflection API
 
-        Breakfast breakfast=new Breakfast(list);//создаем завтрак из списка объектов
+        Breakfast breakfast=new Breakfast(listOfFood);//создаем завтрак из списка объектов
          System.out.println(breakfast.toString());//вывод зависит от специального параметра
         //"-sort" или "-colories"
-        System.out.println(breakfast.numberOfProducts((Food) list.get(0)));//Колличество заданных
+        System.out.println(breakfast.numberOfProducts((Food) listOfFood.get(0)));//Колличество заданных
         //продуктов в классе
 
 
