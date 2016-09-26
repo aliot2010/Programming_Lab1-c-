@@ -19,25 +19,25 @@ public final class LineTreatment {
 
     public static ArrayList<Object> treat(String[] list) {
 
-        List arrayList = new ArrayList(0);
-        List arrayList2;
+        List listOfFullProductsNames = new ArrayList(0);
+        List innerList;
         for (String st : list) {
 
             String[] arr = st.split("/"); //Каждая строка делится  на на массивы строк "/"- разделитель
 
-            arrayList2 = new ArrayList(0);
+            innerList = new ArrayList(0);
             for (String word : arr) {
-                arrayList2.add(word);//создаеи подмассив массива
+                innerList.add(word);//создаеи подмассив массива
 
             }
-            arrayList.add(arrayList2);//записываем подмассив в массив
+            listOfFullProductsNames.add(innerList);//записываем подмассив в массив
 
             //получается массив вида [[Sandwich, Meat, Cheese], [Sanwich, Meat, Tomato],
             // [Sanwich,Cheese], "-sort"(опционально)]
         }
 
 
-        return createArrayOfObj((ArrayList<Object>) arrayList);
+        return createArrayOfObj((ArrayList<Object>) listOfFullProductsNames);
     }
 
     private static ArrayList<Object> createArrayOfObj(ArrayList<Object> listOfFoodNames) {//Функция для создания массмва Объектов из строк продуктоа

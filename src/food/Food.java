@@ -16,5 +16,4 @@ public abstract class Food implements Nutritions {
         return description;
     }
 
-    //public abstract double colories();//метод, который нужно будет пререопределить
 }

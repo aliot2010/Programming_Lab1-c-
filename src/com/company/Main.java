@@ -24,13 +24,10 @@ public class Main {
 //        Food sandwich = new Sandwich();
 //        sandwich = new Meat(sandwich);
 //        sandwich = new Meat(sandwich);
-//        sandwich = new Tomato(sandwich);
-//        sandwich = new Cheese(sandwich);
+//        sandwich = new Tomato(sandwich);//пример создания бутерброда с 2 кусками мяса сыром
+//        sandwich = new Cheese(sandwich);//и помидорами
 //        System.out.println(sandwich.getDescription() + " "
 //                + sandwich.colories() + " Kkal");
-//
-//
-
 
     }
 
