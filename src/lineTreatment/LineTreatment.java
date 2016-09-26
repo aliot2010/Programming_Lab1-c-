@@ -71,7 +71,7 @@ public final class LineTreatment {
                         flag=false;
 //                        list.add(food);
                        // list.remove(list.size()-1);
-                        continue;
+
                     }
 
                 } else {
@@ -91,7 +91,7 @@ public final class LineTreatment {
                         //list.remove(list.size()-1);
 
 //                        }
-                        continue;
+
 
                     }
                 }
