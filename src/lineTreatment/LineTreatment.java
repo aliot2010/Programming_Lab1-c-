@@ -16,7 +16,7 @@ import java.util.List;
  *
  */
 public final class LineTreatment {
-
+    private static Boolean flag=false;
     public static ArrayList<Object> treat(String[] list) {
 
         List listOfFullProductsNames = new ArrayList(0);
@@ -45,7 +45,8 @@ public final class LineTreatment {
         ArrayList<Object> returnubleList = new ArrayList<>(0);//Создаем массив элементов размера 0
         for (Object obj : listOfFoodNames) {//последовательно достаем из принимаемого массива объекты
             Food food = null;
-            boolean flag=true;
+            flag=true;
+
             for (int i = 0; i < ((ArrayList) obj).size(); i++) {
                 if(((ArrayList) obj).get(i).equals("-sort")){//если элемент массива есть строка "-sort"
                                                             //записываем ее в конец конечного массива и
@@ -57,33 +58,9 @@ public final class LineTreatment {
                         return returnubleList;
                 }
                 if (i == 0) {
-                    Class clazz = null;
-                    try {
-                        clazz = Class.forName("food."+(String) ((ArrayList) obj).get(i));//для первого продукта подмассива(sandwich)
-                                                                                    //находи класс по полному имени(имя package+имя класса)
-
-                        Object object = clazz.newInstance(); //создаем объект данного класса
-                        food = (Food) object;//кастим и присваеваем ссылку переменной food
-                    } catch (Exception e) {//обработка ошибки
-                        System.out.println("Продукт "+ (String) ((ArrayList) obj).get(i)+
-                                                " не может быть включен в завтрак");
-                            food=null;
-                        flag=false;
-                    }
-
+                    food=getFood( food, (String) ((ArrayList) obj).get(i));
                 } else {
-                    Class clazz = null;
-                    try {
-                        clazz = Class.forName("food."+(String) ((ArrayList) obj).get(i));//для его декораторов
-                        Constructor c1 = clazz.getConstructor(Food.class);//находим конструктор с параметрами
-                        food = (Food) c1.newInstance(food);//создаем класс, используя этот конструктор
-                    } catch (Exception e ) {
-                        System.out.println("Продукт "+ (String) ((ArrayList) obj).get(i)+
-                                " не может быть включен в завтрак");
-                           food=null;
-                        flag=false;
-
-                    }
+                    food=getFoodDecorator(food, (String) ((ArrayList) obj).get(i));
                 }
             }
             if(flag==true) {
@@ -91,6 +68,40 @@ public final class LineTreatment {
             }
         }
         return  returnubleList;
+    }
+
+    private static Food getFood(Food food, String nameOfFood){
+        Class clazz = null;
+
+        try {
+            clazz = Class.forName("food."+nameOfFood);//для первого продукта подмассива(sandwich)
+            //находи класс по полному имени(имя package+имя класса)
+
+            Object object = clazz.newInstance(); //создаем объект данного класса
+            food = (Food) object;//кастим и присваеваем ссылку переменной food
+        } catch (Exception e) {//обработка ошибки
+            System.out.println("Продукт "+nameOfFood+
+                    " не может быть включен в завтрак");
+            food=null;
+            flag=false;
+        }
+        return food;
+    }
+
+    private static Food getFoodDecorator(Food food, String nameOfFood){
+        Class clazz = null;
+        try {
+            clazz = Class.forName("food."+nameOfFood);//для его декораторов
+            Constructor c1 = clazz.getConstructor(Food.class);//находим конструктор с параметрами
+            food = (Food) c1.newInstance(food);//создаем класс, используя этот конструктор
+        } catch (Exception e ) {
+            System.out.println("Продукт "+nameOfFood+
+                    " не может быть включен в завтрак");
+            food=null;
+            flag=false;
+
+        }
+        return food;
     }
 }
 
