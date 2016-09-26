@@ -19,87 +19,80 @@ public final class LineTreatment {
 
     public static ArrayList<Object> treat(String[] list) {
 
-        List arrayList = new ArrayList(0);
-        List arrayList2;
+        List listOfFullProductsNames = new ArrayList(0);
+        List innerList;
         for (String st : list) {
 
             String[] arr = st.split("/"); //Каждая строка делится  на на массивы строк "/"- разделитель
 
-            arrayList2 = new ArrayList(0);
+            innerList = new ArrayList(0);
             for (String word : arr) {
-                arrayList2.add(word);//создаеи подмассив массива
+                innerList.add(word);//создаеи подмассив массива
 
             }
-            arrayList.add(arrayList2);//записываем подмассив в массив
+            listOfFullProductsNames.add(innerList);//записываем подмассив в массив
 
             //получается массив вида [[Sandwich, Meat, Cheese], [Sanwich, Meat, Tomato],
             // [Sanwich,Cheese], "-sort"(опционально)]
         }
 
 
-        return createArrayOfObj((ArrayList<Object>) arrayList);
+        return createArrayOfObj((ArrayList<Object>) listOfFullProductsNames);
     }
 
-    private static ArrayList<Object> createArrayOfObj(ArrayList<Object> arrayList) {//Функция для создания массмва Объектов из строк продуктоа
+    private static ArrayList<Object> createArrayOfObj(ArrayList<Object> listOfFoodNames) {//Функция для создания массмва Объектов из строк продуктоа
         //Через Reflection API
-        ArrayList<Object> list = new ArrayList<>(0);//Создаем массив элементов размера 0
-        for (Object obj : arrayList) {//последовательно достаем из него объекты
+        ArrayList<Object> returnubleList = new ArrayList<>(0);//Создаем массив элементов размера 0
+        for (Object obj : listOfFoodNames) {//последовательно достаем из принимаемого массива объекты
             Food food = null;
             boolean flag=true;
             for (int i = 0; i < ((ArrayList) obj).size(); i++) {
                 if(((ArrayList) obj).get(i).equals("-sort")){//если элемент массива есть строка "-sort"
                                                             //записываем ее в конец конечного массива и
                                                             // закнчиваем функцию возвращая этот массив
-                    list.add("-sort");
-                    return list;
+                    returnubleList.add("-sort");
+                    return returnubleList;
                 }else  if(((ArrayList) obj).get(i).equals("-colories")){//аналогично
-                        list.add("-colories");
-                        return list;
+                        returnubleList.add("-colories");
+                        return returnubleList;
                 }
                 if (i == 0) {
-                    Class c = null;
+                    Class clazz = null;
                     try {
-                        c = Class.forName("food."+(String) ((ArrayList) obj).get(i));//для первого продукта подмассива(sandwich)
+                        clazz = Class.forName("food."+(String) ((ArrayList) obj).get(i));//для первого продукта подмассива(sandwich)
                                                                                     //находи класс по полному имени(имя package+имя класса)
 
-                        Object object = c.newInstance(); //создаем объект данного класса
+                        Object object = clazz.newInstance(); //создаем объект данного класса
                         food = (Food) object;//кастим и присваеваем ссылку переменной food
                     } catch (Exception e) {//обработка ошибки
                         System.out.println("Продукт "+ (String) ((ArrayList) obj).get(i)+
                                                 " не может быть включен в завтрак");
                             food=null;
                         flag=false;
-//                        list.add(food);
-                       // list.remove(list.size()-1);
-
                     }
 
                 } else {
-                    Class c = null;
+                    Class clazz = null;
                     try {
-                        c = Class.forName("food."+(String) ((ArrayList) obj).get(i));//для его декораторов
-                        Constructor c1 = c.getConstructor(Food.class);//находим конструктор с параметрами
+                        clazz = Class.forName("food."+(String) ((ArrayList) obj).get(i));//для его декораторов
+                        Constructor c1 = clazz.getConstructor(Food.class);//находим конструктор с параметрами
                         food = (Food) c1.newInstance(food);//создаем класс, используя этот конструктор
                     } catch (Exception e ) {
-                       // e.printStackTrace();
                         System.out.println("Продукт "+ (String) ((ArrayList) obj).get(i)+
                                 " не может быть включен в завтрак");
                            food=null;
                         flag=false;
-//                        if(food!=null) {
-//                            list.add(food);
-                        //list.remove(list.size()-1);
-
-//                        }
-
 
                     }
                 }
             }
             if(flag==true) {
-                list.add(food);//добавляем декорированный класс в массив
+                returnubleList.add(food);//добавляем декорированный класс в массив
             }
         }
-        return  list;
+        return  returnubleList;
     }
 }
+
+
+
