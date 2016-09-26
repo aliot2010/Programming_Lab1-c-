@@ -35,7 +35,7 @@ public class Cheese extends FoodDecorator  {
         }if (getClass() != obj.getClass()) {
             return false;
         }
-        Cheese other = (Cheese) obj;
+
 
         return this.food.equals(((Cheese) obj).getFood());
     }

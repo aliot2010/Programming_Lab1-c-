@@ -35,7 +35,7 @@ public class Tomato extends FoodDecorator {
         }if (getClass() != obj.getClass()) {
             return false;
         }
-        Tomato other = (Tomato) obj;
+
 
         return this.food.equals(((Tomato) obj).getFood());
     }

@@ -34,7 +34,7 @@ public class Meat extends FoodDecorator {
         }if (getClass() != obj.getClass()) {
             return false;
         }
-        Meat other = (Meat) obj;
+
 
         return this.food.equals(((Meat) obj).getFood());
     }
