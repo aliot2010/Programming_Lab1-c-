@@ -16,7 +16,7 @@ public class Breakfast {
     private static String CONSUME_STRING_FLAG="-colories";
     private int flag=0;
 
-    public Breakfast(ArrayList list){
+    public Breakfast(ArrayList list){//сортировка в зависимости от от параметра -parametr
        this.list = list;
         if(list.get(list.size()-1)==SORT_STRING_FLAG){
             flag=SORTED_FLAG;
@@ -29,7 +29,8 @@ public class Breakfast {
     }
 
     private void sortArray() {
-        Collections.sort(list, new Comparator() {
+        Collections.sort(list, new Comparator() {//сортировка используя переопределение анонимного
+            // класса Comparator
             @Override
             public int compare(Object o1, Object o2) {
                  if(((Food) o1).getDescription().length()>
@@ -45,7 +46,7 @@ public class Breakfast {
         }
 
     @Override
-    public String toString() {
+    public String toString() {//переопределение метода, выводит в зависимости от параметра -parametr
         StringBuffer stringBuffer=null;
         if (flag==0 || flag==SORTED_FLAG) {
              stringBuffer = new StringBuffer("Your breakfast, ser:\n");
