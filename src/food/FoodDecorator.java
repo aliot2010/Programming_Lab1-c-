@@ -5,8 +5,17 @@ package food;
  * Абстрактный класс для начинки
  */
 public abstract class FoodDecorator extends Food {
+    Food food;
+    double colories = 0;
+
     public abstract String getDescription();
+
     public abstract Food getFood();
+
+
+    public double colories() {
+        return this.colories+food.colories();
+    }
 
     @Override
     public boolean equals(Object obj) {

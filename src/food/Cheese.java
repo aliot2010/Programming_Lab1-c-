@@ -7,15 +7,27 @@ package food;
 public class Cheese extends FoodDecorator  {
     Food food;
 
+
+    public Cheese (){
+        this.food = null;
+        this.description = "Cheese";
+        colories = 150.;
+    }
     public Cheese(Food food) {
         this.food = food;
+        this.description = "Cheese";
+        colories = 150.;
     }
 
 
 
     @Override
     public String getDescription() {
-        return food.getDescription()+", Cheese";
+        if(this.food!=null)
+            return food.getDescription()+", "+this.description;
+        else
+            return description;
+
     }
 
     @Override
@@ -25,7 +37,10 @@ public class Cheese extends FoodDecorator  {
 
     @Override
     public double colories() {
-        return 150.+ food.colories();
+        if(this.food!=null)
+            return this.colories+ food.colories();
+        else
+            return this.colories;
     }
 
     @Override

@@ -11,7 +11,7 @@ package food;
  */
 public abstract class Food implements Nutritions {
     String description="Неизвестная еда";//хранение названия
-
+    double colories = 300.;
     public String getDescription(){
         return description;
     }
