@@ -7,10 +7,12 @@ public class Fish extends Food {
 
     public Fish(){
         description = "Fish";
+        colories = 400.;
     }
     @Override
     public double colories() {
-        return 200;
+        return this.colories();
+
     }
 
     @Override

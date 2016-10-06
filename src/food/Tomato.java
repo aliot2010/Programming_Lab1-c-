@@ -7,13 +7,25 @@ public class Tomato extends FoodDecorator {
 
     Food food;
 
+
+    public Tomato(){
+        this.food = null;
+        description = "Tomato";
+        colories = 40.;
+    }
     public Tomato(Food food) {
         this.food = food;
+        description = "Tomato";
+        colories = 40.;
     }
 
     @Override
     public String getDescription() {
-        return food.getDescription()+", Tomato";
+        if(this.food!=null)
+            return food.getDescription()+", "+this.description;
+        else
+            return description;
+
     }
 
     @Override
@@ -23,7 +35,10 @@ public class Tomato extends FoodDecorator {
 
     @Override
     public double colories() {
-        return 40.+ food.colories();
+        if(this.food!=null)
+            return this.colories+ food.colories();
+        else
+            return this.colories;
     }
 
     @Override

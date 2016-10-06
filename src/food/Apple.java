@@ -5,12 +5,14 @@ package food;
  */
 public class Apple extends Food {
 
+
     public Apple(){
         description = "Apple";
+        colories = 100.;
     }
     @Override
     public double colories() {
-        return 100;
+        return this.colories;
     }
 
     @Override

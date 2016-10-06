@@ -19,7 +19,7 @@ public class Main {
         //"-sort" или "-colories"
         System.out.println(breakfast.numberOfProducts((Food) listOfFood.get(0)));//Колличество заданных
         //продуктов в классе
-        
+
 
 //        Food sandwich = new Sandwich();
 //        sandwich = new Meat(sandwich);

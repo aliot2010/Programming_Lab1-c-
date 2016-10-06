@@ -5,14 +5,23 @@ package food;
  */
 public class Meat extends FoodDecorator {
     Food food;
-
+    public Meat(){
+        this.food = null;
+        description = "Meat";
+        colories=300.0;
+    }
     public Meat(Food food) {
         this.food = food;
+        description = "Meat";
+        colories=300.0;
     }
 
-    @Override
     public String getDescription() {
-        return food.getDescription()+", Meat";
+        if(this.food!=null)
+            return food.getDescription()+", "+this.description;
+        else
+            return description;
+
     }
 
     @Override
@@ -22,7 +31,10 @@ public class Meat extends FoodDecorator {
 
     @Override
     public double colories() {
-        return 180.+ food.colories();
+        if(this.food!=null)
+            return this.colories+ food.colories();
+        else
+            return this.colories;
     }
 
     @Override

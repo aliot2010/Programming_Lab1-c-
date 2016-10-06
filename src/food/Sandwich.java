@@ -7,10 +7,12 @@ public class Sandwich extends Food {
 
     public Sandwich(){
         description = "Sandwich";
+        colories = 100.0;
     }
     @Override
     public double colories() {
-        return 100;
+        return colories;
+
     }
 
     @Override
