@@ -21,6 +21,7 @@ public class Main {
         //продуктов в классе
 
 
+
 //        Food sandwich = new Sandwich();
 //        sandwich = new Meat(sandwich);
 //        sandwich = new Meat(sandwich);
