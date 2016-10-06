@@ -9,11 +9,15 @@ package food;
  *
  *
  */
-public abstract class Food implements Nutritions {
+public abstract class Food implements Nutritions, Consumable {
     String description="Неизвестная еда";//хранение названия
     double colories = 300.;
     public String getDescription(){
         return description;
     }
 
+    @Override
+    public void consume() {
+        System.out.println(description + " ate ");
+    }
 }
