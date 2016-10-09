@@ -29,21 +29,30 @@ public class Breakfast {
     }
 
     private void sortArray() {
-        Collections.sort(list, new Comparator() {//сортировка используя переопределение анонимного
-            // класса Comparator
-            @Override
-            public int compare(Object o1, Object o2) {
-                 if(((Food) o1).getDescription().length()>
+//        Collections.sort(list, new Comparator() {//сортировка используя переопределение анонимного
+//            // класса Comparator
+//            @Override
+//            public int compare(Object o1, Object o2) {
+//                 if(((Food) o1).getDescription().length()>
+//                        (((Food) o2).getDescription().length())){
+//                     return 1;
+//                 } else if(((Food) o1).getDescription().length()<
+//                         (((Food) o2).getDescription().length())){
+//                     return -1;
+//                 }else return 0;
+//            }
+//        });
+        Collections.sort(list, (o1, o2) -> {//Лямбда)
+            if(((Food) o1).getDescription().length()>
                         (((Food) o2).getDescription().length())){
                      return 1;
                  } else if(((Food) o1).getDescription().length()<
                          (((Food) o2).getDescription().length())){
                      return -1;
                  }else return 0;
-            }
         });
 
-        }
+    }
 
     @Override
     public String toString() {//переопределение метода, выводит в зависимости от параметра -parametr
