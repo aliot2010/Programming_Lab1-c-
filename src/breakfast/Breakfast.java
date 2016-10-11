@@ -14,17 +14,30 @@ public class Breakfast {
     private static int CONSUME_FLAG=2;
     private static String SORT_STRING_FLAG="-sort";
     private static String CONSUME_STRING_FLAG="-colories";
-    private int flag=0;
+    private int sortedFlag=0;
+    private int consumeFlag=0;
+
 
     public Breakfast(ArrayList list){//сортировка в зависимости от от параметра -parametr
        this.list = list;
         if(list.get(list.size()-1)==SORT_STRING_FLAG){
-            flag=SORTED_FLAG;
+            sortedFlag=SORTED_FLAG;
             list.remove(list.size()-1);
-            sortArray();
+
         }else if (list.get(list.size()-1)==CONSUME_STRING_FLAG){
-            flag=CONSUME_FLAG;
+            consumeFlag=CONSUME_FLAG;
             list.remove(list.size()-1);
+        }
+        if (list.get(list.size()-1)==CONSUME_STRING_FLAG){
+            consumeFlag=CONSUME_FLAG;
+            list.remove(list.size()-1);
+        }else if(list.get(list.size()-1)==SORT_STRING_FLAG){
+            sortedFlag=SORTED_FLAG;
+            list.remove(list.size()-1);
+
+        }
+        if (sortedFlag==SORTED_FLAG){
+            sortArray();
         }
     }
 
@@ -57,7 +70,7 @@ public class Breakfast {
     @Override
     public String toString() {//переопределение метода, выводит в зависимости от параметра -parametr
         StringBuffer stringBuffer=null;
-        if (flag==0 || flag==SORTED_FLAG) {
+        if (consumeFlag==0  ) {
              stringBuffer = new StringBuffer("Your breakfast, ser:\n");
             for (Object i : list) {
                 stringBuffer.append(((Food) i).getDescription() + "\n");
@@ -79,9 +92,7 @@ public class Breakfast {
         return sum;
     }
 
-    public int getFlag() {
-        return flag;
-    }
+
 
     public int numberOfProducts(Food food){
         int sum=0;
