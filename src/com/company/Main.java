@@ -13,7 +13,7 @@ public class Main {
 
         ArrayList listOfFood=LineTreatment.treat(args);//метод создания массива объектов по названиям классов,
         //используя Reflection API
-
+        System.out.print(listOfFood);
         Breakfast breakfast=new Breakfast(listOfFood);//создаем завтрак из списка объектов
          System.out.println(breakfast.toString());//вывод зависит от специального параметра
         //"-sort" или "-colories"

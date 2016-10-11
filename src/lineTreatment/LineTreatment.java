@@ -61,15 +61,18 @@ public final class LineTreatment {
             Food food = null;
             flag = true;
 
+
             for (int i = 0; i < ((ArrayList) obj).size(); i++) {
-                if (((ArrayList) obj).get(i).equals("-sort")) {//если элемент массива есть строка "-sort"
-                    //записываем ее в конец конечного массива и
-                    // закнчиваем функцию возвращая этот массив
+
+                if (((ArrayList) obj).get(i).equals("-sort")) {
                     returnubleList.add("-sort");
-                    return returnubleList;
+                    flag=false;
+                    continue;
+
                 } else if (((ArrayList) obj).get(i).equals("-colories")) {//аналогично
                     returnubleList.add("-colories");
-                    return returnubleList;
+                    flag=false;
+                    continue;
                 }
                 if (i == 0) {
                     food = getFood(food, (String) ((ArrayList) obj).get(i));
